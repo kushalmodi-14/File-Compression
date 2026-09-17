@@ -1,0 +1,8 @@
+packages:
+  - name: media
+    functions:
+      - name: compress
+        runtime: nodejs:20
+        limits:
+          timeout: 900000     # 15 minutes max
+          memory: 1024        # 1 GB max

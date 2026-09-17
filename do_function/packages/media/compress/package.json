@@ -1,0 +1,9 @@
+{
+  "name": "media-compress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.1500.0",
+    "axios": "^1.6.0"
+  }
+}
