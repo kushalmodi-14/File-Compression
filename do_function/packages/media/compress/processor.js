@@ -2,10 +2,12 @@ const { execFile, execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-// WARNING: FFmpeg must be provided in the container/droplet or bundled in the DO Function 
-// (which may exceed the 48MB limit if not heavily optimized).
-const FFMPEG_PATH = process.env.FFMPEG_PATH || "/opt/bin/ffmpeg";
-const FFPROBE_PATH = process.env.FFPROBE_PATH || "/opt/bin/ffprobe";
+const ffmpegStatic = require('@ffmpeg-installer/ffmpeg');
+const ffprobeStatic = require('@ffprobe-installer/ffprobe');
+
+const FFMPEG_PATH = ffmpegStatic.path;
+const FFPROBE_PATH = ffprobeStatic.path;
+
 
 function getVideoBitrate(inputPath) {
   try {
@@ -39,7 +41,7 @@ async function processMedia(inputPath, fileExt) {
     contentType = "image/webp";
     
     await new Promise((resolve, reject) => {
-      execFile(FFMPEG_PATH, ["-i", inputPath, "-c:v", "libwebp", "-quality", "80", "-compression_level", "6", "-preset", "picture", outputPath], (error, stdout, stderr) => {
+      execFile(FFMPEG_PATH, ["-i", inputPath, "-c:v", "libwebp", "-quality", "80", "-compression_level", "6", "-preset", "picture", "-y", outputPath], (error, stdout, stderr) => {
         if (error) { console.error("FFmpeg image error:", stderr); reject(error); } 
         else resolve();
       });

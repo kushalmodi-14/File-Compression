@@ -48,7 +48,8 @@ async function main(event, context) {
 
     return {
       statusCode: 200,
-      body: { message: "Compression successful", processedUrl }
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "Compression successful", processedUrl })
     };
   } catch (error) {
     console.error("Function failed:", error);
@@ -60,7 +61,8 @@ async function main(event, context) {
 
     return {
       statusCode: 500,
-      body: { error: error.message || "Compression failed" }
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: error.message || "Compression failed" })
     };
   }
 }

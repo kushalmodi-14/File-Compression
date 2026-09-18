@@ -8,11 +8,12 @@ async function updateMediaStatus(mediaId, status, compressedPath) {
   
   // Example GraphQL mutation based on the schema document
   const query = `
-    mutation UpdateMedia($id: uuid!, $status: media_compression_status!, $path: String) {
-      update_media_by_pk(pk_columns: {id: $id}, _set: {status: $status, compressed_path: $path}) {
-        id
-      }
-    }
+    mutation UpdateMedia($id: String!, $set: MediaUpdateInput!) {
+  updateMedia(where: {id: {eq: $id}}, set: $set) {
+    id
+    status
+  }
+}
   `;
 
   try {
@@ -20,13 +21,14 @@ async function updateMediaStatus(mediaId, status, compressedPath) {
       process.env.GRAPHQL_ENDPOINT,
       {
         query,
-        variables: { id: mediaId, status: status, path: compressedPath }
-      },
-      {
-        headers: {
-          "x-hasura-admin-secret": process.env.HASURA_ADMIN_SECRET || "",
+        variables: {
+            id: mediaId,
+            set: {
+                status: status,
+                compressedPath: compressedPath
+            }
         }
-      }
+      },
     );
     console.log(`Successfully updated media ${mediaId} to ${status}`);
   } catch (error) {

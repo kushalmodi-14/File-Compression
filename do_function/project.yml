@@ -2,7 +2,14 @@ packages:
   - name: media
     functions:
       - name: compress
-        runtime: nodejs:20
+        runtime: nodejs:18
+        web: true
         limits:
           timeout: 900000     # 15 minutes max
           memory: 1024        # 1 GB max
+        environment:
+          SPACES_ENDPOINT: "${SPACES_ENDPOINT}"
+          SPACES_KEY: "${SPACES_KEY}"
+          SPACES_SECRET: "${SPACES_SECRET}"
+          SPACES_BUCKET: "${SPACES_BUCKET}"
+          GRAPHQL_ENDPOINT: "${GRAPHQL_ENDPOINT}"
