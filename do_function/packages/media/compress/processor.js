@@ -2,11 +2,41 @@ const { execFile, execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
-const ffmpegStatic = require('@ffmpeg-installer/ffmpeg');
-const ffprobeStatic = require('@ffprobe-installer/ffprobe');
+const axios = require('axios');
 
-const FFMPEG_PATH = ffmpegStatic.path;
-const FFPROBE_PATH = ffprobeStatic.path;
+const FFMPEG_PATH = '/tmp/ffmpeg';
+const FFPROBE_PATH = '/tmp/ffprobe';
+const FFMPEG_URL = 'https://registry.npmjs.org/@ffmpeg-installer/linux-x64/-/linux-x64-4.1.0.tgz';
+const FFPROBE_URL = 'https://registry.npmjs.org/@ffprobe-installer/linux-x64/-/linux-x64-5.2.0.tgz';
+
+async function downloadAndExtract(url, binaryName) {
+  const archivePath = `/tmp/${binaryName}.tgz`;
+  const response = await axios({ method: 'get', url, responseType: 'stream' });
+  const writer = fs.createWriteStream(archivePath);
+  response.data.pipe(writer);
+  await new Promise((resolve, reject) => {
+    writer.on('finish', resolve);
+    writer.on('error', reject);
+  });
+  
+  execSync(`tar -xzf ${archivePath} -C /tmp --strip-components=1 package/${binaryName}`);
+  fs.chmodSync(`/tmp/${binaryName}`, 0o755);
+  fs.unlinkSync(archivePath);
+}
+
+async function ensureFFmpeg() {
+  if (!fs.existsSync(FFMPEG_PATH)) {
+    console.log("Downloading FFmpeg binary (this only happens once per container cold start)...");
+    await downloadAndExtract(FFMPEG_URL, 'ffmpeg');
+    console.log("FFmpeg ready.");
+  }
+  
+  if (!fs.existsSync(FFPROBE_PATH)) {
+    console.log("Downloading FFprobe binary...");
+    await downloadAndExtract(FFPROBE_URL, 'ffprobe');
+    console.log("FFprobe ready.");
+  }
+}
 
 
 function getVideoBitrate(inputPath) {
@@ -27,6 +57,8 @@ function getCompressionSettings(bitrateKbps, sizeMB) {
 }
 
 async function processMedia(inputPath, fileExt) {
+  await ensureFFmpeg();
+
   const isImage = [".jpg", ".jpeg", ".png", ".gif", ".heic", ".heif", ".svg", ".webp"].includes(fileExt);
   const isVideo = [".mp4", ".mov", ".avi", ".mkv", ".webm"].includes(fileExt);
   

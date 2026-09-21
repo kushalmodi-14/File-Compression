@@ -39,7 +39,7 @@ async function main(event, context) {
 
     // 5. Update Database Table (`media`) status via GraphQL
     if (mediaId) {
-      await updateMediaStatus(mediaId, 'UNCOMPRESSED', outKey);
+      await updateMediaStatus(mediaId, 'COMPRESSED', outKey);
     }
 
     // Cleanup local /tmp storage before exit to free up function memory

@@ -1,0 +1,10 @@
+{
+  "name": "documents-compress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.9.0"
+  }
+}

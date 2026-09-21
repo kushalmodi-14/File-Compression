@@ -4,9 +4,13 @@
     "namespace": "fn-bca39cf4-bc08-441c-a365-b3b82d024f98",
     "packageVersions": {},
     "actionVersions": {
-      "media/compress": {
-        "digest": "c332f46d976b58b99b37e9cdbfd6666f629a56763a8bcc53a6d782d40307f3c3",
+      "documents/compress": {
+        "digest": "78044cc0a767d02572ccde3f9ee8be73cd6b3c7e88232f7b2385ee9fe3aa404c",
         "version": "0.0.7"
+      },
+      "media/compress": {
+        "digest": "d9ee1edb436a4df41b121e93c67d1f8f1665e2cc4cb61a6febb20e0bb9b4efa6",
+        "version": "0.0.19"
       }
     }
   }
