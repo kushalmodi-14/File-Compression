@@ -1,5 +1,5 @@
 {
-  "name": "goshimmy-file-processing",
+  "name": "file-processing",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
