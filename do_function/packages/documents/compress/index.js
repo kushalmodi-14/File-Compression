@@ -81,7 +81,12 @@ async function main(args) {
     }
     
     // 4. Upload compressed file
-    const outKey = `after-processing/${path.basename(key)}`;
+    let dir = path.dirname(key);
+    if (dir.startsWith('original')) {
+      dir = dir.replace(/^original\/?/, '');
+    }
+    const outDir = dir ? `after-compression/${dir}` : 'after-compression';
+    const outKey = `${outDir}/${path.basename(key)}`;
     console.log(`Uploading compressed file to ${outKey}`);
     await uploadFile(localOutputPath, outKey);
     

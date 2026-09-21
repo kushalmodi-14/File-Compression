@@ -5,12 +5,12 @@
     "packageVersions": {},
     "actionVersions": {
       "documents/compress": {
-        "digest": "78044cc0a767d02572ccde3f9ee8be73cd6b3c7e88232f7b2385ee9fe3aa404c",
-        "version": "0.0.7"
+        "digest": "a3f2e4d38eba35590139be085ee96348d12ca9b0f891375c62456897c6f3f01b",
+        "version": "0.0.8"
       },
       "media/compress": {
-        "digest": "d9ee1edb436a4df41b121e93c67d1f8f1665e2cc4cb61a6febb20e0bb9b4efa6",
-        "version": "0.0.19"
+        "digest": "472e2261fd5abd1957c396db55c4de5ad3a6e71b86dd06a727b27dce5516c95f",
+        "version": "0.0.20"
       }
     }
   }

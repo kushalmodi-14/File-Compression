@@ -30,8 +30,13 @@ async function main(event, context) {
     // 2. Compress the media via FFmpeg (Image to WebP, or Video compression)
     const { outputPath, contentType } = await processMedia(inputPath, fileExt);
 
-    // 3. Upload processed file back to S3/DO Spaces under 'after-processing'
-    const outKey = `after-processing/${path.basename(outputPath)}`;
+    // 3. Upload processed file back to S3/DO Spaces under 'after-compression'
+    let dir = path.dirname(key);
+    if (dir.startsWith('original')) {
+      dir = dir.replace(/^original\/?/, '');
+    }
+    const outDir = dir ? `after-compression/${dir}` : 'after-compression';
+    const outKey = `${outDir}/${path.basename(outputPath)}`;
     const processedUrl = await uploadFile(outputPath, outKey, contentType);
 
     // 4. Update the tag on the original file
