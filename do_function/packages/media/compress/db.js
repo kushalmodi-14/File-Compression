@@ -1,8 +1,18 @@
 const axios = require("axios");
 
+function getGraphqlEndpoint() {
+  const isProd = process.env.enviorments === 'production';
+  if (isProd) {
+    return process.env.PROD_GRAPHQL_ENDPOINT;
+  }
+  return process.env.STAGGING_GRAPHQL_ENDPOINT || process.env.GRAPHQL_ENDPOINT;
+}
+
 async function updateMediaStatus(mediaId, status, compressedPath) {
-  if (!process.env.GRAPHQL_ENDPOINT) {
-    console.warn("No GRAPHQL_ENDPOINT set. Skipping DB update.");
+  const graphqlEndpoint = getGraphqlEndpoint();
+
+  if (!graphqlEndpoint) {
+    console.warn(`No GRAPHQL_ENDPOINT set. Skipping DB update.`);
     return;
   }
   
@@ -18,7 +28,7 @@ async function updateMediaStatus(mediaId, status, compressedPath) {
 
   try {
     await axios.post(
-      process.env.GRAPHQL_ENDPOINT,
+      graphqlEndpoint,
       {
         query,
         variables: {

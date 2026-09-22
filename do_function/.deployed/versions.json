@@ -43,5 +43,20 @@
         "version": "0.0.1"
       }
     }
+  },
+  {
+    "apihost": "https://faas-blr1-8177d592.doserverless.co",
+    "namespace": "fn-db21168c-3c8c-47c2-8508-c7f097457cae",
+    "packageVersions": {},
+    "actionVersions": {
+      "documents/compress": {
+        "digest": "1366770598f2fd6285bd8c2f3ef2dbfd9372ceb53052c13f663888ffba8a4f65",
+        "version": "0.0.3"
+      },
+      "media/compress": {
+        "digest": "849939094f0e8b26ce3e2790c55b403c27ceb29a968db58b1e3a3e92afae6707",
+        "version": "0.0.3"
+      }
+    }
   }
 ]

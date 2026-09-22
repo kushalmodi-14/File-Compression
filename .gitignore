@@ -2,3 +2,4 @@ node_modules
 
 after-processed
 .env*
+**/.env*

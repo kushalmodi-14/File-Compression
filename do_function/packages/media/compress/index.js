@@ -15,6 +15,16 @@ async function main(event, context) {
   const key = event.key;
   const mediaId = event.mediaId;
 
+  // DigitalOcean functions with web: true pass headers in event.__ow_headers
+  const headers = event.__ow_headers || {};
+  if (headers.enviorments) {
+    process.env.enviorments = headers.enviorments;
+  } else if (event.enviorments) {
+    process.env.enviorments = event.enviorments;
+  } else {
+    process.env.enviorments = 'stagging'; // default fallback
+  }
+
   if (!key) {
     return { statusCode: 400, body: "Missing 'key' in event." };
   }
