@@ -13,5 +13,35 @@
         "version": "0.0.20"
       }
     }
+  },
+  {
+    "apihost": "https://faas-blr1-8177d592.doserverless.co",
+    "namespace": "fn-fab20620-dcaf-439c-abe1-5029a221e3cc",
+    "packageVersions": {},
+    "actionVersions": {
+      "documents/compress": {
+        "digest": "084950ed44f5ef2be67476ba7fd63bf9a5dd250685f4d13e5b7b25621a6d6096",
+        "version": "0.0.1"
+      },
+      "media/compress": {
+        "digest": "82be68329ad02ac19da2987cf19975a1442161c12471fbb5711f8c47533d9cfe",
+        "version": "0.0.1"
+      }
+    }
+  },
+  {
+    "apihost": "https://faas-blr1-8177d592.doserverless.co",
+    "namespace": "fn-d52d867e-8ea7-465c-8980-c018ea59d099",
+    "packageVersions": {},
+    "actionVersions": {
+      "documents/compress": {
+        "digest": "fbc62da096c59082ffc61247340c6d9ea4610c8522905da3dd20fc5dcc11e198",
+        "version": "0.0.1"
+      },
+      "media/compress": {
+        "digest": "499a512a1e53c2544d40edba0d864c6ccfff44875d758dd3fa38daf1e9f982e1",
+        "version": "0.0.1"
+      }
+    }
   }
 ]
