@@ -50,12 +50,12 @@
     "packageVersions": {},
     "actionVersions": {
       "documents/compress": {
-        "digest": "1366770598f2fd6285bd8c2f3ef2dbfd9372ceb53052c13f663888ffba8a4f65",
-        "version": "0.0.3"
+        "digest": "f18d1129297b758542acc075d4c642f8bee0003cbc1b2c46040c024302c95355",
+        "version": "0.0.4"
       },
       "media/compress": {
-        "digest": "849939094f0e8b26ce3e2790c55b403c27ceb29a968db58b1e3a3e92afae6707",
-        "version": "0.0.3"
+        "digest": "1dbd1d85fda86686cc23f92f884610cac94f6466949d07b0f3b3be8c3f0d4249",
+        "version": "0.0.4"
       }
     }
   }
